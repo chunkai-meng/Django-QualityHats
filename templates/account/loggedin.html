@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends "shares/base.html" %}
+{% load static from staticfiles %}
+{% load bootstrap4 %}
+{% block body_block %}
+<br>
+<h2 class="title is-size3">{{ title }}</h2>
+
+
+<h5>{{ username }}</h5>
+<a href="/account/logout/">Logout!</a>
+
+{% endblock %}

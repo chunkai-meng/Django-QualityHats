@@ -1,0 +1,40 @@
+{% extends "shares/base.html" %}
+{% load static from staticfiles %}
+
+{% block body_block %}
+
+  <h1>Hello this is the User List !</h1>
+  {% if hat_list %}
+
+
+  <div class='card-deck'>
+    <div class="row">
+      {% for hat in hat_list %}
+      <div class='col-sm-6 col-md-4'>
+        <div class="card" style="margin-top: 30px;">
+          <img class="card-img-top img-fluid" src="/media/{{ hat.image }}" alt="Card image cap" height=242 width=200>
+          <div class="card-body">
+            <h4 class="card-title">{{ hat.name }}</h4>
+            <p class="card-text">{{ hat.description }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">
+              <div class='row'>
+                  <div class='col-xs-6 col-md-8'><h6>${{ hat.price }}</h6></div>
+                  <div class='col-xs-6 col-md-4' align='right'>
+                    <a href='index.php?content_page=ShoppingCart&action=add&id=$id' class='badge badge-dark'>+</a>
+                  </div>
+              </div>
+            </small>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <hr>
+
+    {% endif %}
+
+  {% endblock %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "shares/base.html" %}
+{% load static from staticfiles %}
+{% load bootstrap4 %}
+{% block body_block %}
+<br>
+<h2 class="title is-size3">{{ title }}</h2>
+
+
+<form method="post">
+        <br>
+        <h4>Login</h4>
+        <hr />
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+                <a href="/account/register/">Do not have an account?</a>
+        {% endbuttons %}
+</form>
+
+
+{% endblock %}

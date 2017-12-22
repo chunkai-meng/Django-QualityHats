@@ -1,0 +1,90 @@
+{% extends "shares/base.html" %}
+{% load static from staticfiles %}
+
+{% block body_block %}
+
+    <h1>Hello this is the User List !</h1>
+    {% if hat_list %}
+
+
+    <div class='card-group'>
+      <div class='row'>
+
+        {% for hat in hat_list %}
+        <div class='col-sm-4 col-md-4'>
+          <div class='thumbnail'>
+            <img class='card-img-top' src="/media/{{ hat.image }}" alt='Card image cap' height='242' width='200'>
+            <div class='caption'>
+              <h5>{{ hat.name }}</h5>
+              <p>{{ hat.description }}</p>
+            </div>
+            <div class='row'>
+                <div class='col-xs-6 col-md-8'><h6>${{ hat.price }}</h6></div>
+                <div class='col-xs-6 col-md-4' align='right'>
+
+                  <a href='index.php?content_page=ShoppingCart&action=add&id=$id' class='badge badge-dark'>+</a>
+                </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <div class="card-deck">
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
+
+  {% endblock %}

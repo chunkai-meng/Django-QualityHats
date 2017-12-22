@@ -1,0 +1,12 @@
+{% extends "shares/base.html" %}
+{% block body_block %}
+<div class="jumbotron">
+  <h1>Add a New Hat</h1>
+  <h3>Fill out the form:</h3>
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ hat_form.as_p }}
+    <input type="submit" value="ADD">
+  </form>
+</div>
+{% endblock %}

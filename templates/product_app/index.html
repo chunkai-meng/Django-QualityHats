@@ -1,12 +1,15 @@
 {% extends "shares/base.html" %}
 {% load static from staticfiles %}
 
+{% block head_title %}Shop{% endblock %}
+
+{% block content_head %}
+<br>
+<h2>All Hats</h2>
+{% endblock %}
+
 {% block body_block %}
-
-  <h1>Hello this is the User List !</h1>
   {% if hat_list %}
-
-
   <div class='card-deck'>
     <div class="row">
       {% for hat in hat_list %}
@@ -32,9 +35,6 @@
       {% endfor %}
     </div>
   </div>
-
   <hr>
-
-    {% endif %}
-
-  {% endblock %}
+  {% endif %}
+{% endblock %}

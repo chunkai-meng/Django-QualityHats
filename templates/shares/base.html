@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static "favicon/logos-site-QH.ico" %}" />
+    <link rel="icon" href="{% static "favicon/logos-site-QH.ico" %}">
 
-    <title>{{ title }}</title>
+    <title>
+      {% block head_title %}{% endblock %}
+    </title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static "bootstrap-4/css/bootstrap.min.css" %}" rel="stylesheet" />
+    <link href="{% static "bootstrap-4/css/bootstrap.min.css" %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{% static "css/sticky-footer-navbar.css" %}" rel="stylesheet" />
+    <link href="{% static "css/sticky-footer-navbar.css" %}" rel="stylesheet">
   </head>
 
   <body>
@@ -38,16 +40,31 @@
               <a class="nav-link disabled" href="#">Disabled</a>
             </li>
           </ul>
-          <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Welcome {{ username }}!
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% if username %}
+              <a class="dropdown-item" href="/account/">Profile</a>
+              <a class="dropdown-item" href="/account/logout/">Logout</a>
+              {% else %}
+              <a class="dropdown-item" href="/account/login/">login</a>
+              {% endif %}
+              <a class="dropdown-item" href="/account/register/">Register</a>
+            </div>
+          </div>
+          <!--<form class="form-inline mt-2 mt-md-0">-->
+            <!--<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+          <!--</form>-->
         </div>
       </nav>
     </header>
 
     <!-- Begin page content -->
     <main role="main" class="container body-content">
+      {% block content_head %}Content Head{% endblock %}
       {% block body_block %}
       {% endblock %}
     </main>

@@ -3,14 +3,19 @@
 {% load static from staticfiles %}
 {% load bootstrap4 %}
 
-{% block head_title %}Account Index{% endblock %}
+{% block head_title %}All users{% endblock %}
 
 {% block body_block %}
 <br>
 <h2 class="title is-size3">{{ title }}</h2>
 
-
-
-
+ <ul>
+     {% for user in object_list %}
+         <li>{{ user.address }}</li>
+     {% endfor %}
+ </ul>
 
 {% endblock %}
+
+
+

@@ -1,46 +1,4 @@
-{% extends "shares/base.html" %}
-{% load static from staticfiles %}
-
-{% block head_title %}Shop{% endblock %}
-
-{% block content_head %}
-<br>
-<h2>All Hats</h2>
-{% endblock %}
-
-{% block body_block %}
-  {% if hat_list %}
-  <div class='card-deck'>
-    <div class="row">
-      {% for hat in hat_list %}
-      <div class='col-sm-6 col-md-4'>
-        <div class="card" style="margin-top: 30px;">
-          <img class="card-img-top img-fluid" src="/media/{{ hat.image }}" alt="Card image cap" height=242 width=200>
-          <div class="card-body">
-            <h5 class="card-title">{{ hat.name }}</h5>
-            <p class="card-text">{{ hat.description }}</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">
-              <div class='row'>
-                  <div class='col-xs-6 col-md-8'><h6>${{ hat.price }}</h6></div>
-                  <div class='col-xs-6 col-md-4' align='right'>
-                    <a href='index.php?content_page=ShoppingCart&action=add&id=$id' class='badge badge-dark'>+</a>
-                  </div>
-              </div>
-            </small>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  <br>
-  {% endif %}
-{% endblock %}
-
-{% block shopping_cart %}
-<h2>Shopping Cart:</h2>
+{% block shoppint_cart %}
 <form action="index.php?content_page=Order" method="post">
     <input type="hidden" name="action" value="Create" />
     <table class="table">
@@ -86,5 +44,4 @@
         </div>
     </div>
 </form>
-<br>
 {% endblock %}

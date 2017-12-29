@@ -1,8 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.views.generic import DetailView, ListView
+from django.views.generic import View, TemplateView, DetailView, ListView
 from account.forms import UserForm, UserProfileInfoForm, LoginForm
 from account.models import UserProfileInfo
+
+
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['injected'] = 'BASE'
+        return context
 
 
 def userdetail(request):
@@ -10,7 +19,7 @@ def userdetail(request):
     if username:
         userprofile = UserProfileInfo.objects.get(user=User(username='lunch'))
         # userprofile = UserProfileInfo.objects.get(address='aaa')
-        return render(request, 'account/detail.html', {'object':userprofile})
+        return render(request, 'account/detail.html', {'object': userprofile})
     else:
         return redirect('/account/')
 

@@ -1,0 +1,10 @@
+{% extends "product_app/product_app_base.html" %}
+{% block body_block %}
+  <div class="jumbotron">
+    <h1>Welcome to the order detail page</h1>
+    <h2>Order Details:</h2>
+    <p>Name: {{ product.name }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Quantity: {{ product.quantity }}</p>
+  </div>
+{% endblock %}

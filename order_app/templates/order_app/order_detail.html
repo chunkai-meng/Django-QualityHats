@@ -1,0 +1,53 @@
+{% extends "order_app/order_app_base.html" %}
+{% load custom_filters %}
+{% block body_block %}
+  <div class="jumbotron">
+    <h1>Welcome to the order detail page</h1>
+  </div>
+  <h3>Order Details:</h3>
+  <p>ID: {{ object.id }}</p>
+  <p>Status: {{ object.status }}</p>
+  <p>Submitted Date {{ object.submitted_date }}</p>
+  <p>Date {{ object.date }}</p>
+  <p>Account: {{ object.account.username }}</p>
+  <p>GST: {{ object.GST }}</p>
+  <p>Price: {{ object.total_price }}</p>
+  <p>Quantity: {{ object.quantity }}</p>
+  <h3>Recipient Details:</h3>
+  <p>Recipient Name: {{ object.recipient }}</p>
+  <p>Phone: {{ object.phone_number }}</p>
+  <p>Address 1: {{ object.street_line1 }}</p>
+  <p>Address 2: {{ object.street_line2 }}</p>
+  <p>Zip: {{ object.zipcode }}</p>
+  <p>City: {{ object.city }}</p>
+  <p>State: {{ object.state }}</p>
+  <h3>Order Items:</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Sub Total</th>
+      </tr>
+    </head>
+    <tbody>
+      {% for item in object.items.all %}
+        <tr>
+          <td>{{ item.product.name }}</th>
+          <td>{{ item.price|currency }}</th>
+          <td>{{ item.quantity }}</th>
+          {# <td>{% widthratio item.price 1.0 item.quantity %}</th> #}
+          <td>{{ item.subtotal|currency }}</th>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="container">
+    <p>
+      <!--Here user pk istead of id maybe because it's the variable from URL-->
+      <a class="btn btn-warning" href="{% url 'order_app:update' pk=object.pk %}">Update</a>
+      <a class="" href="{% url 'order_app:delete' pk=object.pk %}">Delete</a>
+    </p>
+  </div>
+{% endblock %}

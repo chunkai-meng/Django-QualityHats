@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Hat, Category, Supplier
+from django.views.generic import View, TemplateView, ListView, DetailView
+from . import models
 from .forms import HatForm
 
+
 def index(request):
-    hat_list = Hat.objects.order_by('name')
+    hat_list = models.Hat.objects.order_by('name')
     username = username = request.session['username'] if 'username' in request.session else ''
     context_dir = {
         'username': username,
@@ -19,8 +21,8 @@ def add_hat(request):
         hat_form = HatForm(request.POST, request.FILES)
         if hat_form.is_valid():
             hat = hat_form.save(commit=False)
-            hat.category = Category.objects.get(id=request.POST['category'])
-            hat.supplier = Supplier.objects.get(id=request.POST['supplier'])
+            hat.category = models.Category.objects.get(id=request.POST['category'])
+            hat.supplier = models.Supplier.objects.get(id=request.POST['supplier'])
             hat.save()
             print("Hat Added")
         else:

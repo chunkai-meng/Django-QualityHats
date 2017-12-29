@@ -1,0 +1,15 @@
+{% extends "product_app/product_app_base.html" %}
+{% block body_block %}
+  <div class="jumbotron">
+    <h1>Testing TemplateView!</h1>
+    <h2>Injected Content: {{ injected }}</h2>
+  </div>
+  <h1>Welcome to list of all orders</h1>
+  <ol>
+    {% for order in order_list %}
+    <h2>
+      <li>{{ order.client.username }}</li>
+    </h2>
+    {% endfor %}
+  </ol>
+{% endblock %}

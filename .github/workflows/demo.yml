@@ -7,7 +7,6 @@ on:
 
 jobs:
   setup:
-    name: Setup
     runs-on: ubuntu-latest
     environment: demo
     steps:
@@ -16,7 +15,6 @@ jobs:
 
 
   build:
-    name: Setup
     runs-on: ubuntu-latest
     environment: demo
     steps:
@@ -25,7 +23,6 @@ jobs:
 
 
   publish:
-    name: Setup
     runs-on: ubuntu-latest
     environment: demo
     steps:

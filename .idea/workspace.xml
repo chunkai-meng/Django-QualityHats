@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb11600a-7bec-415e-ad33-3cab1e003757" name="Default" comment="add Shopping_Cart and CartItem to models">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/demo.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/qualityhats.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/qualityhats.iml" afterDir="false" />
+    <list default="true" id="bb11600a-7bec-415e-ad33-3cab1e003757" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/demo.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/demo.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/order_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/order_app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/product_app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qualityhats/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/qualityhats/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +274,7 @@
       <option name="presentableId" value="Default" />
       <updated>1513550667155</updated>
       <workItem from="1664359561628" duration="2267000" />
-      <workItem from="1669687728145" duration="1041000" />
+      <workItem from="1669687728145" duration="5214000" />
     </task>
     <task id="LOCAL-00001" summary="update code">
       <created>1514275130410</created>

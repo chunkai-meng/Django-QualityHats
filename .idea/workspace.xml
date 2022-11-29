@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb11600a-7bec-415e-ad33-3cab1e003757" name="Default" comment="">
+    <list default="true" id="bb11600a-7bec-415e-ad33-3cab1e003757" name="Default" comment="add Shopping_Cart and CartItem to models">
       <change beforePath="$PROJECT_DIR$/.github/workflows/demo.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/demo.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -274,7 +274,7 @@
       <option name="presentableId" value="Default" />
       <updated>1513550667155</updated>
       <workItem from="1664359561628" duration="2267000" />
-      <workItem from="1669687728145" duration="5330000" />
+      <workItem from="1669687728145" duration="5420000" />
     </task>
     <task id="LOCAL-00001" summary="update code">
       <created>1514275130410</created>
@@ -290,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514369569722</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add Shopping_Cart and CartItem to models">
+      <created>1669696758916</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669696758916</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">

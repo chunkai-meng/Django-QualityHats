@@ -8,18 +8,48 @@ on:
   workflow_dispatch:
 
 jobs:
-  Build:
+  Test:
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [ '3.10' ]
+        node-version: [ 16.x ]
+        
     steps:
       - uses: actions/checkout@v2
-
-      - name: Compile
-        run: echo Hello, world!
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements/dev.txt
+          python manage.py  compress --force
+          python manage.py collectstatic --noinput
+      - name: Run Tests
+        run: |
+          python manage.py test
     
   DeployDev:
     name: Deploy to Dev 
     if: github.event_name == 'pull_request'
-    needs: [Build]
+    needs: [Test]
     runs-on: ubuntu-latest
     environment: 
       name: Development
@@ -31,7 +61,7 @@ jobs:
   DeployStaging:
     name: Deploy to Staging 
     if: github.event.ref == 'refs/heads/main'
-    needs: [Build]
+    needs: [Test]
     runs-on: ubuntu-latest
     environment: 
       name: Staging

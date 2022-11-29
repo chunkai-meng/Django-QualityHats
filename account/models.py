@@ -7,7 +7,7 @@ class UserProfileInfo(models.Model):
     """User Profile OneToOne with admin user."""
 
     # Create relationship
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # Add additional attributes
     phone = models.CharField(max_length=265)

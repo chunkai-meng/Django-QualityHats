@@ -1,0 +1,49 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - env/demo
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+    environment: demo
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+#      - name: Set up Node.js 16.x
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: 16.x
+#      - name: Install Dependencies
+#        run: |
+#          npm i --prefix=assets
+#          npm run build --prefix=assets
+#      - name: Set up Python 3.10
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: 3.10
+#      - name: Install Dependencies
+#        run: |
+#          touch .env
+#          python -m pip install --upgrade pip
+#          pip install -r requirements/dev.txt
+#          python manage.py  compress --force
+#          python manage.py collectstatic --noinput
+#      - name: Build and Push Docker Image
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: .
+#          file: ./Dockerfile
+#          push: true
+#          tags: ${{ secrets.DOCKERHUB_USERNAME }}/erp-demo:latest
+#      - name: Deploy to Heroku
+#        uses:
+
+      - name: Log
+        run: |
+          echo "$(echo ${GITHUB_REF#refs/heads/}):" > VERSION
+          echo "$(git rev-parse HEAD)" >> VERSION

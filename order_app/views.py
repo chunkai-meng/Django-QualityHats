@@ -1,5 +1,5 @@
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from . import models
 # Create your views here.
 

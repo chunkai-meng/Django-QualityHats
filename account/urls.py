@@ -1,14 +1,14 @@
-from django.conf.urls import url
+from django.urls import path
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 from account import views
 
 app_name = 'account'
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^register/$', views.register, name='register'),
-    url(r'^login/$', views.login, name='login'),
-    url(r'^logout/$', views.logout, name='logout'),
-    url(r'^userdetail/$', views.userdetail, name='userdetail'),
-    url(r'^userlist/$', ListView.as_view(model=User), name='userlist'),
+    path(r'^$', views.IndexView.as_view(), name='index'),
+    path(r'^register/$', views.register, name='register'),
+    path(r'^login/$', views.login, name='login'),
+    path(r'^logout/$', views.logout, name='logout'),
+    path(r'^userdetail/$', views.userdetail, name='userdetail'),
+    path(r'^userlist/$', ListView.as_view(model=User), name='userlist'),
 ]

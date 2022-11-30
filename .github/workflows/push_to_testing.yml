@@ -55,7 +55,7 @@ jobs:
       - name: Deploy
         run: |
           echo ${{needs.Test.outputs.output1}} ${{needs.Test.outputs.output2}}
-          echo "https://${{needs.Test.step_output.outputs.image_name}}.prowood.network/"
+          echo ${{needs.Test.outputs.output1}}.prowood.network/"
           echo I am deploying! 
         
   DeployDBTest:

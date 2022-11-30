@@ -28,7 +28,7 @@ jobs:
       - id: output_step
         run: |
           echo "image_name=https://$IMAGE_NAME.prowood.network/"
-          echo "image_name=$IMAGE_NAME" >> $GITHUB_OUTPUT
+          echo "image_name=https://$IMAGE_NAME.prowood.network/" >> $GITHUB_OUTPUT
       - id: step2
         run: echo "test=world" >> $GITHUB_OUTPUT
 

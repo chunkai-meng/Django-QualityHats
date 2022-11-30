@@ -18,7 +18,8 @@ jobs:
     steps:
       - name: Extract branch name
         shell: bash
-        run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
+        # run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
+        run: echo "BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
       - name: Test
         run: echo "${BRANCH_NAME}"
       - uses: actions/checkout@v2

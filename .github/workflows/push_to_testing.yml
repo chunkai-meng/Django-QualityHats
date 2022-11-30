@@ -58,7 +58,7 @@ jobs:
         
   DeployDBTest:
     name: Deploy to db-test
-    if: github.ref == 'refs/heads/db-test'
+    if: github.ref == 'refs/heads/erp/db-test'
     needs: [Test]
     runs-on: ubuntu-latest
     environment:

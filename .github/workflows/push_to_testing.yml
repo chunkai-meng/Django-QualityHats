@@ -24,7 +24,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install Dependencies
         run: |
-          echo "------------------- install dependencies ----------------"
+          echo https://erp-$BRANCH_NAME.prowood.network/
       - name: Run Tests
         run: |
           echo "------------------- run test ----------------"$BRANCH_NAME

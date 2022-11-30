@@ -28,12 +28,12 @@ jobs:
           echo "------------------- run test ----------------"
 
   DeployDev:
-    name: Deploy to Dev 
+    name: Deploy to Dev
     if: github.event_name == 'push'
     needs: [Test]
     runs-on: ubuntu-latest
-    environment: 
-      name: Development
+    environment:
+      name: Testing
       url: 'http://dev.myapp.com'
     steps:
       - name: Deploy

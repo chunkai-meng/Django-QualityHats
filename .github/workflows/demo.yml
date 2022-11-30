@@ -2,7 +2,7 @@ name: Push To Demo
 
 on:
   push:
-    branches: [ env/demo ]
+    branches: [ env/ck-test, env/db-test, env/testing ]
 
 jobs:
   Test:
@@ -26,14 +26,40 @@ jobs:
       - name: Run Tests
         run: |
           echo "------------------- run test ----------------"
-  DeployDev:
-    name: Deploy to Dev
-    if: github.event_name == 'push'
+          
+  DeployCKTest:
+    name: Deploy to ck-test
+    if: github.ref == 'refs/heads/ck-test'
     needs: [Test]
     runs-on: ubuntu-latest
     environment:
       name: Testing
-      url: 'http://dev.myapp.com'
+      url: 'http://ck-test.myapp.com'
     steps:
       - name: Deploy
         run: echo I am deploying! 
+        
+  DeployDBTest:
+    name: Deploy to db-test
+    if: github.ref == 'refs/heads/db-test'
+    needs: [Test]
+    runs-on: ubuntu-latest
+    environment:
+      name: Testing
+      url: 'http://db-test.myapp.com'
+    steps:
+      - name: Deploy
+        run: echo I am deploying!
+        
+  DeployTesting:
+    name: Deploy to testing
+    if: github.ref == 'refs/heads/testing'
+    needs: [Test]
+    runs-on: ubuntu-latest
+    environment:
+      name: Testing
+      url: 'http://testing.myapp.com'
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 
+

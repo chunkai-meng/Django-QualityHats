@@ -1,66 +1,39 @@
-name: Deployment
+name: Push To Demo
 
 on:
   push:
-    branches:
-      - env/demo
+    branches: [ env/demo ]
 
 jobs:
-  setup:
+  Test:
+    name: Setup and Test
     runs-on: ubuntu-latest
-    environment: demo
+    
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [ '3.7' ]
+        
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-
-  build:
-    runs-on: ubuntu-latest
-    environment: demo
-    needs: setup
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-
-  publish:
-    runs-on: ubuntu-latest
-    environment: demo
-    needs: build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-#      - name: Set up Node.js 16.x
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: 16.x
-#      - name: Install Dependencies
-#        run: |
-#          npm i --prefix=assets
-#          npm run build --prefix=assets
-#      - name: Set up Python 3.10
-#        uses: actions/setup-python@v2
-#        with:
-#          python-version: 3.10
-#      - name: Install Dependencies
-#        run: |
-#          touch .env
-#          python -m pip install --upgrade pip
-#          pip install -r requirements/dev.txt
-#          python manage.py  compress --force
-#          python manage.py collectstatic --noinput
-#      - name: Build and Push Docker Image
-#        uses: docker/build-push-action@v2
-#        with:
-#          context: .
-#          file: ./Dockerfile
-#          push: true
-#          tags: ${{ secrets.DOCKERHUB_USERNAME }}/erp-demo:latest
-#      - name: Deploy to Heroku
-#        uses:
-
-      - name: Log
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Dependencies
         run: |
-          echo "$(echo ${GITHUB_REF#refs/heads/}):" > VERSION
-          echo "$(git rev-parse HEAD)" >> VERSION
+          echo "------------------- install dependencies ----------------"
+      - name: Run Tests
+        run: |
+          echo "------------------- run test ----------------"
+  DeployDev:
+    name: Deploy to Dev
+    if: github.event_name == 'push'
+    needs: [Test]
+    runs-on: ubuntu-latest
+    environment:
+      name: Testing
+      url: 'http://dev.myapp.com'
+    steps:
+      - name: Deploy
+        run: echo I am deploying! 

@@ -44,7 +44,7 @@ jobs:
           echo "------------------- run test ---------------- $IMAGE_NAME"
           
   DeployCKTest:
-    name: Deploy to ck-test
+    name: Deploy to ck-test ${{needs.Test.outputs.output1}}
     if: github.event.ref == 'refs/heads/env/ck-test'
     needs: Test
     runs-on: ubuntu-latest

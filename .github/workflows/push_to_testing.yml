@@ -24,10 +24,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install Dependencies
         run: |
-          echo https://erp-$BRANCH_NAME.prowood.network/
+          echo "https://erp-${BRANCH_NAME}.prowood.network/"
       - name: Run Tests
         run: |
-          echo "------------------- run test ----------------"$BRANCH_NAME
+          echo "------------------- run test ---------------- $BRANCH_NAME"
           
   DeployCKTest:
     name: Deploy to ck-test

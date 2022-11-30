@@ -5,6 +5,7 @@ on:
     branches: [ env/ck-test, env/db-test, env/testing ]
 env:
  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+ IMAGE_NAME: ${GITHUB_REF_NAME/\//-}
  
 jobs:
   Test:
@@ -36,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Testing
-      url: "https://erp-$BRANCH_NAME.prowood.network/"
+      url: "https://$IMAGE_NAME.prowood.network/"
     steps:
       - name: Deploy
         run: echo I am deploying! 

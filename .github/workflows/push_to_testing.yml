@@ -3,7 +3,9 @@ name: Push To Demo
 on:
   push:
     branches: [ env/ck-test, env/db-test, env/testing ]
-
+env:
+ BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+ 
 jobs:
   Test:
     name: Setup and Test
@@ -25,7 +27,7 @@ jobs:
           echo "------------------- install dependencies ----------------"
       - name: Run Tests
         run: |
-          echo "------------------- run test ----------------"
+          echo "------------------- run test ----------------"$BRANCH_NAME
           
   DeployCKTest:
     name: Deploy to ck-test

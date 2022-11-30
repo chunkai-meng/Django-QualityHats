@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Deploy
         run: |
-          echo "https://${{needs.Test.outputs.image_name}}.prowood.network/"
+          echo "https://${{needs.Test.step_output.outputs.image_name}}.prowood.network/"
           echo I am deploying! 
         
   DeployDBTest:

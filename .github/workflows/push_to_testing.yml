@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Testing
-      url: 'http://ck-test.myapp.com'
+      url: "https://erp-${BRANCH_NAME}.prowood.network/"
     steps:
       - name: Deploy
         run: echo I am deploying! 

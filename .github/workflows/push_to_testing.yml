@@ -3,9 +3,7 @@ name: Push To Demo
 on:
   push:
     branches: [ env/ck-test, env/db-test, env/testing ]
-env:
- BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
- IMAGE_NAME: ${GITHUB_REF_NAME/\//-}
+
  
 jobs:
   Test:
@@ -18,6 +16,11 @@ jobs:
         python-version: [ '3.7' ]
         
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
+      - name: Test
+        run: echo "${BRANCH_NAME}"
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -37,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Testing
-      url: "https://$IMAGE_NAME.prowood.network/"
+      url: "https://$BRANCH_NAME.prowood.network/"
     steps:
       - name: Deploy
         run: echo I am deploying! 

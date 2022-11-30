@@ -17,7 +17,7 @@ jobs:
         
     outputs:
       output1: ${{ steps.output_step.outputs.IMAGE_NAME }}
-      output2: "https://${{ steps.output_step.outputs.IMAGE_NAME }}.prowood.network/"
+      output2: https://${{ steps.output_step.outputs.IMAGE_NAME }}.prowood.network/
     steps:
       - uses: actions/checkout@v2
       # - name: Extract branch name

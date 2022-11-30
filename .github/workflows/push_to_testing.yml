@@ -17,6 +17,7 @@ jobs:
         
     outputs:
       output1: ${{ steps.output_step.outputs.image_name }}
+      output2: ${{ steps.step2.outputs.test }}
     steps:
       - uses: actions/checkout@v2
       - name: Extract branch name
@@ -28,6 +29,8 @@ jobs:
         run: |
           echo "image_name=$IMAGE_NAME"
           echo "image_name=$IMAGE_NAME" >> $GITHUB_OUTPUT
+      - id: step2
+        run: echo "test=world" >> $GITHUB_OUTPUT
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -43,7 +46,7 @@ jobs:
   DeployCKTest:
     name: Deploy to ck-test
     if: github.event.ref == 'refs/heads/env/ck-test'
-    needs: [Test]
+    needs: Test
     runs-on: ubuntu-latest
     environment:
       name: Testing
@@ -51,6 +54,7 @@ jobs:
     steps:
       - name: Deploy
         run: |
+          echo ${{needs.Test.outputs.output1}} ${{needs.Test.outputs.output2}}
           echo "https://${{needs.Test.step_output.outputs.image_name}}.prowood.network/"
           echo I am deploying! 
         

@@ -24,7 +24,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install Dependencies
         run: |
-          echo "https://erp-${BRANCH_NAME}.prowood.network/"
+          echo "https://erp-$BRANCH_NAME.prowood.network/"
       - name: Run Tests
         run: |
           echo "------------------- run test ---------------- $BRANCH_NAME"
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Testing
-      url: "https://erp-${BRANCH_NAME}.prowood.network/"
+      url: "https://erp-$BRANCH_NAME.prowood.network/"
     steps:
       - name: Deploy
         run: echo I am deploying! 

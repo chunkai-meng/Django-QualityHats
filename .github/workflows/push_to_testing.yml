@@ -50,12 +50,12 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Testing
-      url: "https://${{needs.Test.outputs.out_put1}}.prowood.network/"
+      url: "${{needs.Test.outputs.output1}}.prowood.network/"
     steps:
       - name: Deploy
         run: |
           echo ${{needs.Test.outputs.output1}} ${{needs.Test.outputs.output2}}
-          echo ${{needs.Test.outputs.output1}}.prowood.network/"
+          echo "${{needs.Test.outputs.output1}}.prowood.network/"
           echo I am deploying! 
         
   DeployDBTest:

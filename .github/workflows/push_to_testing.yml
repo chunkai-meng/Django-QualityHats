@@ -6,7 +6,7 @@ on:
 
 env:
   NODE_VERSION: 16
-  IMAGE_NAME: https://www.google.com
+  URL: https://www.google.com
 
 jobs:
   Test:
@@ -67,7 +67,7 @@ jobs:
     environment:
       name: Testing
 #       url: ${{ steps.extract_branch_name.outputs.IMAGE_NAME }}
-      url: ${{ env.IMAGE_NAME }}
+      url: ${{ env.URL }}
     steps:
       - id: extract_branch_name
         shell: bash

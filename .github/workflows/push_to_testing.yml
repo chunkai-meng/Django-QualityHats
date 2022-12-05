@@ -1,9 +1,11 @@
-name: Push To Demo ${{ steps.output_step.outputs.IMAGE_NAME }}
+name: Push To Demo
 
 on:
   push:
     branches: [ env/ck-test, env/db-test, env/testing ]
 
+env:
+  NODE_VERSION: 16
 
 jobs:
   Test:
@@ -66,7 +68,7 @@ jobs:
 #       url: ${{ steps.extract_branch_name.outputs.IMAGE_NAME }}
       url: $IMAGE_NAME
     steps:
-      - id: extract_branch_name
+      - id: extract_branch_name $NODE_VERSION
         shell: bash
         # run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
         # run: echo "IMAGE_NAME=$(git rev-parse --abbrev-ref HEAD)"| sed 's/\//_/g' >> $GITHUB_ENV

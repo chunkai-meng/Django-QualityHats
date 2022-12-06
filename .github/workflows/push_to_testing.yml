@@ -2,7 +2,7 @@ name: Push To Demo
 
 on:
   push:
-    branches: [ env/ck-test, env/db-test, env/testing ]
+    branches: [ env/** ]
 
 jobs:
   Test:

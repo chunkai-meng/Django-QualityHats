@@ -1,14 +1,16 @@
-name: Push To Demo
+name: Test and Deploy
 
 on:
   push:
-    branches: [ env/** ]
+    branches: [ env/**, ck/**, as/**, yz/** ]
 
 jobs:
   Test:
     name: Setup and Test
     runs-on: ubuntu-latest
-    
+    environment:
+      name: Development
+
     strategy:
       max-parallel: 4
       matrix:

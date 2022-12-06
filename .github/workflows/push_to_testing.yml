@@ -4,8 +4,6 @@ on:
   push:
     branches: [ env/ck-test, env/db-test, env/testing ]
 
-
-
 jobs:
   Test:
     name: Setup and Test
@@ -42,13 +40,13 @@ jobs:
         run: |
           echo "------------------- run test ---------------- $IMAGE_NAME"
           
-  DeployCKTest:
+  Deploy to Demo:
     name: Deploy to ${{needs.Test.outputs.image_name}}
-    if: github.event.ref == 'refs/heads/env/ck-test'
+    if: github.event.ref == 'refs/heads/env/demo'
     needs: Test
     runs-on: ubuntu-latest
     environment:
-      name: Testing
+      name: Staging
       url: ${{needs.Test.outputs.url}}
     steps:
       - name: Deploy
@@ -56,34 +54,31 @@ jobs:
           echo ${{needs.Test.outputs.image_name}} ${{needs.Test.outputs.url}}
           echo I am deploying! 
         
-  DeployDBTest:
+  Deploy to Prod:
     name: Deploy to ${{needs.Test.outputs.image_name}}
-    if: github.ref == 'refs/heads/env/db-test'
+    if: github.ref == 'refs/heads/env/prod'
+    needs: [Test]
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: ${{needs.Test.outputs.url}}
+    steps:
+      - id: extract_branch_name
+        shell: bash
+        run: echo "${{needs.Test.outputs.image_name}}"
+      - name: Deploy  ${{ env.URL }}
+        run: |
+          echo I am deploying! ${{needs.Test.outputs.image_name}}
+        
+  Deploy Testing:
+    name: Deploy to ${{needs.Test.outputs.image_name}}
+    if: contains(github.ref, 'test)'
     needs: [Test]
     runs-on: ubuntu-latest
     environment:
       name: Testing
       url: ${{needs.Test.outputs.url}}
-#      url: ${{ env.URL }}
-    steps:
-      - id: extract_branch_name
-        shell: bash
-        # run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
-        # run: echo "IMAGE_NAME=$(git rev-parse --abbrev-ref HEAD)"| sed 's/\//_/g' >> $GITHUB_ENV
-        run: echo "${{ env.IMAGE_NAME }} ${{ env.URL }}"
-      - name: Deploy  ${{ env.URL }}
-        run: |
-          echo I am deploying! ${{ env.IMAGE_NAME }}
-        
-  DeployTesting:
-    name: Deploy to testing
-    if: github.ref == 'refs/heads/testing'
-    needs: [Test]
-    runs-on: ubuntu-latest
-    environment:
-      name: Testing
-      url: 'http://testing.myapp.com'
     steps:
       - name: Deploy
-        run: echo I am deploying! 
+        run: echo I am deploying! ${{needs.Test.outputs.url}}
 

@@ -72,7 +72,7 @@ jobs:
         
   Deploy_Testing:
     name: Deploy to ${{needs.Test.outputs.image_name}}
-    if: contains(github.ref, 'test)'
+    if: contains(github.ref, 'test')
     needs: [Test]
     runs-on: ubuntu-latest
     environment:

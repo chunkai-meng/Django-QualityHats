@@ -4,9 +4,7 @@ on:
   push:
     branches: [ env/ck-test, env/db-test, env/testing ]
 
-env:
-  NODE_VERSION: 16
-  URL: https://${{ steps.output_step.outputs.IMAGE_NAME }}.prowood.network
+
 
 jobs:
   Test:
@@ -21,18 +19,17 @@ jobs:
     outputs:
       image_name: ${{ steps.output_step.outputs.IMAGE_NAME }}
       url: https://${{ steps.output_step.outputs.IMAGE_NAME }}.prowood.network/
+
     steps:
       - uses: actions/checkout@v3
       - name: Extract branch name
-        shell: bash
-        # run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
-        # run: echo "IMAGE_NAME=$(git rev-parse --abbrev-ref HEAD)"| sed 's/\//_/g' >> $GITHUB_ENV
-        run: echo "IMAGE_NAME=$GITHUB_REF_NAME"| sed 's/env\//erp-/g' >> $GITHUB_ENV
+#        shell: bash
+#        run: echo "IMAGE_NAME=$GITHUB_REF_NAME"| sed 's/env\//erp-/g' >> $GITHUB_ENV
       - id: output_step
         run: |
           echo "IMAGE_NAME=$GITHUB_REF_NAME"| sed 's/env\//erp-/g' >> $GITHUB_OUTPUT
-      - id: step2
-        run: echo "test=world" >> $GITHUB_OUTPUT
+#      - id: step2
+#        run: echo "test=world" >> $GITHUB_OUTPUT
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4

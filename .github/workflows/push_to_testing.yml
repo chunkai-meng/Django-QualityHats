@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "------------------- run test ---------------- $IMAGE_NAME"
           
-  Deploy to Demo:
+  Deploy_to_Demo:
     name: Deploy to ${{needs.Test.outputs.image_name}}
     if: github.event.ref == 'refs/heads/env/demo'
     needs: Test
@@ -54,7 +54,7 @@ jobs:
           echo ${{needs.Test.outputs.image_name}} ${{needs.Test.outputs.url}}
           echo I am deploying! 
         
-  Deploy to Prod:
+  Deploy_to_Prod:
     name: Deploy to ${{needs.Test.outputs.image_name}}
     if: github.ref == 'refs/heads/env/prod'
     needs: [Test]
@@ -70,7 +70,7 @@ jobs:
         run: |
           echo I am deploying! ${{needs.Test.outputs.image_name}}
         
-  Deploy Testing:
+  Deploy_Testing:
     name: Deploy to ${{needs.Test.outputs.image_name}}
     if: contains(github.ref, 'test)'
     needs: [Test]

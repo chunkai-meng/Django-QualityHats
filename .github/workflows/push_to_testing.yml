@@ -66,8 +66,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Testing
-#       url: ${{ steps.extract_branch_name.outputs.IMAGE_NAME }}
-      url: ${{ env.URL }}
+      url: ${{ steps.extract_branch_name.outputs.IMAGE_NAME }}
+#      url: ${{ env.URL }}
     steps:
       - id: extract_branch_name
         shell: bash

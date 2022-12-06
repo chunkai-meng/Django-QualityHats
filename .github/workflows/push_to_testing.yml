@@ -6,7 +6,7 @@ on:
 
 env:
   NODE_VERSION: 16
-  URL: https://www.google.com
+  URL: https://${{ steps.output_step.outputs.IMAGE_NAME }}.prowood.network
 
 jobs:
   Test:

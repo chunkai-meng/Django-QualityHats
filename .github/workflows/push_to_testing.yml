@@ -22,12 +22,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/workflows/shared-steps
-#      - name: Install apt dependencies
-#        run: |
-#          set -ex
-#          sudo apt update
-#          sudo apt install -y g++ libldap2-dev libsasl2-dev ldap-utils tox
+      - uses: ./.github/workflows/shared-steps/install-apt-dependencies
       - id: output_step
         run: |
           echo "IMAGE_NAME=$GITHUB_REF_NAME"| sed 's/env\//erp-/g' >> $GITHUB_OUTPUT
@@ -35,9 +30,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install Dependencies
-        run: |
-          pip install -r requirements.txt
       - name: Run Tests
         run: |
           echo "------------------- run test ---------------- $IMAGE_NAME"

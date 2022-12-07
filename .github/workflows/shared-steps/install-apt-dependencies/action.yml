@@ -1,0 +1,29 @@
+name: Install apt dependencies
+description: Install apt dependencies
+inputs:
+  node_version:
+    required: true
+  python_version:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install apt dependencies
+      shell: bash
+      run: |
+        set -ex
+        sudo apt update
+        sudo apt install -y g++ libldap2-dev libsasl2-dev ldap-utils tox
+
+    - name: Set up Python ${{ inputs.python_version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python_version }}
+    - name: Install Dependencies
+      run: |
+        touch .env
+        python -m pip install --upgrade pip
+        pip install -r requirements/test.txt
+        python manage.py  compress --force
+        python manage.py collectstatic --noinput

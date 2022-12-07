@@ -1,0 +1,11 @@
+name: Install apt dependencies
+description: Install apt dependencies
+runs:
+  using: "composite"
+  steps:
+    - name: Install apt dependencies
+      shell: bash
+      run: |
+        set -ex
+        sudo apt update
+        sudo apt install -y g++ libldap2-dev libsasl2-dev ldap-utils tox

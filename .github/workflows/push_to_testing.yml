@@ -28,16 +28,13 @@ jobs:
       - id: output_step
         run: |
           echo "IMAGE_NAME=$GITHUB_REF_NAME"| sed 's/env\//erp-/g' >> $GITHUB_OUTPUT
-#      - id: step2
-#        run: echo "test=world" >> $GITHUB_OUTPUT
-
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install Dependencies
         run: |
-          echo "https://$IMAGE_NAME.prowood.network/"$GITHUB_REF_NAME
+          pip install -r requirements.txt
       - name: Run Tests
         run: |
           echo "------------------- run test ---------------- $IMAGE_NAME"

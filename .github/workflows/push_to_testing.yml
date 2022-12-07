@@ -31,8 +31,8 @@ jobs:
         with:
           node_version: ${{ env.NODE_VERSION }}
           python_version: ${{ env.PYTHON_VERSION }}
-      - id: output_step
-        name: Get image name
+      - name: Get image name
+        id: output_step
         run: |
           echo "IMAGE_NAME=$GITHUB_REF_NAME"| sed 's/env\//erp-/g' >> $GITHUB_OUTPUT
       - name: Set up Python ${{ matrix.python-version }}

@@ -21,6 +21,7 @@ runs:
       with:
         python-version: ${{ inputs.python_version }}
     - name: Install Dependencies
+      shell: bash
       run: |
         touch .env
         python -m pip install --upgrade pip

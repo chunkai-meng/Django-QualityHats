@@ -26,7 +26,7 @@ jobs:
         run: |
           set -ex
           sudo apt update
-          sudo apt install -y g++ libldap2-dev ldap-utils tox
+          sudo apt install -y g++ libldap2-dev libsasl2-dev ldap-utils tox
       - id: output_step
         run: |
           echo "IMAGE_NAME=$GITHUB_REF_NAME"| sed 's/env\//erp-/g' >> $GITHUB_OUTPUT
